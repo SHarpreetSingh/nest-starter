@@ -12,27 +12,30 @@ export class StoreService {
   ) {}
 
   async create(createStoreDto: CreateStoreDto): Promise<Store> {
-     const user=await this.storeService.save({
-        name: 'dddd', // createStoreDto.name
-      });
-    console.log('user', user);
-
+    const user = await this.storeService.save({
+      name: createStoreDto.name,
+    });
+    console.log('user');
     return user;
   }
 
-  findAll() {
-    return `This action returns all store`;
+  async findAll() {
+    const user = await this.storeService.find();
+    return user;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} store`;
+  async findOne(id: number) {
+    const user = await this.storeService.findOne({ where: { id } });
+    return user;
   }
 
-  update(id: number, updateStoreDto: UpdateStoreDto) {
-    return `This action updates a #${id} store`;
+  async update(id: number, updateStoreDto: UpdateStoreDto) {
+    const user = await this.storeService.update(id, updateStoreDto);
+    return user;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} store`;
+  async remove(id: number) {
+    const user = await this.storeService.delete(id);
+    return user;
   }
 }
